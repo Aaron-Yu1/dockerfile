@@ -12,8 +12,6 @@ RUN apt update && \
     tar -zxf /tmp/apache-tomcat-10.1.13.tar.gz -C /usr/local/bin/ && \
     ln -s /usr/local/bin/apache-tomcat-10.1.13/ /usr/local/bin/tomcat
 
-ADD jre.tar.gz /usr/local/bin/jdk-17.0.8/
-
 ENV JAVA_HOME=/usr/local/bin/jdk
 ENV JRE_HOME=${JAVA_HOME}/jre
 ENV CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
