@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 
 # Install openssh-server packages and configure it.
 RUN apt-get update && \
-    apt-get install -y openssh-server && \
+    apt-get install -y openssh-server openjdk-17-jdk && \
     apt-get clean && \
     mkdir /share && \
     mkdir /var/run/sshd && \
