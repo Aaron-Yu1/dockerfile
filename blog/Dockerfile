@@ -7,19 +7,18 @@ RUN apt-get update && \
     apt-get clean && \
     hugo new site myblog && \
     cd myblog && \
-    git clone https://ghproxy.com/https://github.com/kakawait/hugo-tranquilpeak-theme.git \
+    git clone https://ghproxy.com/https://github.com/Aaron-Yu1/hugo-tranquilpeak-theme.git \
               themes/hugo-tranquilpeak-theme && \
     mkdir /var/run/sshd && \
     echo 'root:P@ssw0rd' | chpasswd
-
 # Add SSH config file
 ADD sshd_config /etc/ssh/sshd_config
 ADD authorized_keys /root/.ssh/
 
-WORKDIR /myblog/themes/hugo-tranquilpeak-theme/exampleSite/
+WORKDIR /myblog/
 
-# Expose the SSH port
-EXPOSE 1313
+# Expose the Nginx port
+EXPOSE 443
 
-# Start the SSH server
-CMD ["hugo", "server", "--themesDir", "../..", "--bind", "0.0.0.0", "--baseURL", "http://blog.test.local:1313"]
+# Start the nginx service
+CMD ["hugo", "server", "--bind", "0.0.0.0","--port", "443", "--baseURL", "https://www.opscoffee.com", "--config", "themes/hugo-tranquilpeak-theme/exampleSite/config.toml", "--contentDir", "themes/hugo-tranquilpeak-theme/exampleSite/content"]
