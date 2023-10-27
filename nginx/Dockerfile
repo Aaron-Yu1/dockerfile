@@ -1,3 +1,9 @@
-FROM nginx:1.24.0
+FROM ubuntu:22.04
 
-RUN mkdir /static
+RUN apt update && \
+    apt install -y nginx vim git && \
+    mkdir /var/www/mysite
+
+EXPOSE 80
+
+CMD ["nginx","-g","daemon off;"]
